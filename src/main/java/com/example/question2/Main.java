@@ -1,71 +1,55 @@
 package com.example.question2;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
-
 public class Main extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        BorderPane borderPane = new BorderPane();
-
-        Scene scene = new Scene(borderPane, 800, 700);
-        stage.setTitle("Password Generator");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public VBox Background(){
-        VBox frontText = new VBox();
-        Font font1 = Font.font("Verdana", FontWeight.BOLD,30);
-        Text discText1 = new Text("Are You Ready For");
-        discText1.setFont(font1);
-        discText1.setFill(Color.BLACK);
-
-        Font font2 = Font.font("Verdana", FontWeight.EXTRA_BOLD,30);
-        Text discText2 = new Text("The ADVENTURE");
-        discText2.setFont(font2);
-        discText2.setFill(Color.rgb(78, 78, 78));
-        discText2.setStyle("-fx-background-color: rgba(255, 255, 255, 0.2)");
-
-        Font font3 = Font.font("Verdana", FontWeight.BOLD,18);
-        Text discText3 = new Text("What Kind of Challenges Await You?");
-        discText3.setFont(font3);
-        discText3.setFill(Color.WHEAT);
-
-        Button startGame = new Button("Lets GO");
-        Font font4 = Font.font("Verdana", FontWeight.BOLD,16);
-        startGame.setFont(font4);
-        startGame.setStyle("-fx-background-color: rgba(255, 255, 255, 0.2)");
-        startGame.setMaxHeight(300);
-        startGame.setMaxWidth(150);
-
-        frontText.setSpacing(6);
-        frontText.setPadding(new Insets(100, 0, 0, 100));
-        frontText.getChildren().addAll(discText1, discText2, discText3, startGame);
-
-        return frontText;
-    }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        GridPane gridPane = new GridPane();
+        // Text field for Enter words
+        Label label1 = new Label("Enter Words: ");
+        TextField text1 = new TextField();
+        text1.setPrefWidth(250);
+        text1.setMaxWidth(250);
+
+        //Generate Password Button
+        Button button1 =new Button();
+        button1.setText("Generate Password");
+
+        // Text field for Password
+        Label label2 = new Label("Use This Password: ");
+        TextField text2 = new TextField();
+
+        gridPane.add(label1,1, 1, 1,1);
+        gridPane.add(text1, 3,1,1, 1);
+        gridPane.add(button1,3,2,1,1);
+        gridPane.add(label2,1, 3, 1,1);
+        gridPane.add(text2, 3,3,1, 1);
+
+        gridPane.setAlignment(Pos.TOP_CENTER);
+        gridPane.setHgap(30);
+        gridPane.setVgap(20);
+
+        Scene scene = new Scene(gridPane, 500, 200);
+
+        primaryStage.setTitle("Text Field Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
